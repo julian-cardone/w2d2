@@ -23,7 +23,7 @@ end
 
 def check_in(person, room)
     if room_exists?(room)
-        if Room.add_occupant(person)
+        if @rooms[room].add_occupant(person)
             puts 'check in successful'
         else
         puts "sorry, room is full"
@@ -32,6 +32,19 @@ def check_in(person, room)
     end
 end
 
+def has_vacancy?
+    @rooms.each do |k,v|
+        if !v.full?
+            return true
+        end
+    end
+    return false
 end
 
-#p Hotel.new("hilbert's grand hotel", "Basement"=>4, "Attic"=>2, "Under the Stairs"=>1)
+def list_rooms
+    @rooms.each do |k,v|
+        puts k + v.available_space.to_s
+    end
+end
+
+end
