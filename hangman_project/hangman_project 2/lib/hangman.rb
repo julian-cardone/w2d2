@@ -46,20 +46,20 @@ def try_guess(char)
     return true
   end
   if already_attempted?(char)
-    print "that has already been attempted" 
+    puts "that has already been attempted" 
     return false
   end
 end
 
 def ask_user_for_guess
-  print "Enter a char"
+  puts "Enter a char"
   char = gets.chomp
   return try_guess(char)
 end
 
 def win?
   if @guess_word.join('') == @secret_word
-    print 'WIN'
+    puts 'WIN'
     return true
   else
     return false
@@ -68,7 +68,7 @@ end
 
   def lose?
     if @remaining_incorrect_guesses == 0
-      print 'LOSE'
+      puts 'LOSE'
       return true
     else
       return false
@@ -77,7 +77,7 @@ end
 
 def game_over?
   if win? || lose?
-    print @secret_word
+    puts @secret_word
     return true
   else
     return false
