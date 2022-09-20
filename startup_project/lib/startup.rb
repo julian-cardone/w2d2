@@ -1,4 +1,5 @@
 require "employee"
+require 'byebug'
 
 class Startup
 
@@ -49,6 +50,26 @@ class Startup
 
     def payday
         employees.each {|person| pay_employee(person)}
+    end
+
+    def average_salary
+        sum = 0
+        @employees.each do |ele|
+            sum += @salaries[ele.title]
+        end
+        return sum / employees.length
+    end
+
+    def close
+        @employees = []
+        @funding = 0
+    end
+
+    def acquire(startup)
+        @funding += startup.funding
+        @employees += startup.employees
+        startup.salaries.each {|k, v| @salaries[k] = v if !@salaries.has_key?(k)}
+        startup.close
     end
 
 end
